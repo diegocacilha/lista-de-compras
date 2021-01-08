@@ -9,6 +9,7 @@
     <script>
         window.onload = function(){
             let form = document.querySelector('#formAddItem');
+            // adiciona item
             form.addEventListener('submit', (e) => {
                 e.preventDefault()
                 let fd = new FormData(form);
@@ -26,7 +27,6 @@
             let itens = document.querySelectorAll('.itens');
             itens.forEach( (item) => {
                 item.addEventListener('click', (evt) => {
-
                     evt.preventDefault();
                     let fd = new FormData();
                     fd.append('id', item.value);
@@ -34,10 +34,7 @@
                         method: 'DELETE',
                         body: fd,
                     }).then( (e) => {
-                        if(e.redirected)
-                            window.location = e.url
-                        else
-                            console.log('olha izu nego')
+                        window.location = '/itens';                        
                     }).catch( (response) => console.log(`ERRO: ${response}`));
                 });
             });

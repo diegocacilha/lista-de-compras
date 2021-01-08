@@ -9,7 +9,7 @@ module.exports = function(app){
         item.remove(req.body.id)
             .then(() => {
                 // TEM QUE ALTERAR O METHOD POIS ESTÁ ENTRANDO NUM LOOPING
-                res.redirect(rota.itens)
+                res.status(200).send();                
             })
             .catch( () => console.log('deu erro lista.itens.js'));
     });
