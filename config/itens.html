@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form id="teste" name="teste" name="teste" >
+            <input type="text" name="nome" id="nome">
+            <input type="text" name="idade" id="idade">
+            <button type="submit">Salvar</button>
+        </form>    
+    </body>
+    <script>
+            const foo = document.getElementById('teste')
+
+            var serializeForm = function (form) {
+                var obj = {};
+                var formData = new FormData(form);
+                for (var key of formData.keys()) {
+                    obj[key] = formData.get(key);
+                }
+                return obj;
+            };
+
+            foo.addEventListener('submit', function (event) {
+                event.preventDefault();
+                fetch('/itens', {
+                    method: 'POST',
+                    body: serializeForm(foo),
+                }).then(function (data) {
+                        console.log(data);
+                    }).catch(function (error) {
+                        console.warn(error);
+                    });
+            });
+
+            // const formData = new FormData(foo)
+            //     formData.append('userId', 123)
+            //     var h = new XMLHttpRequest();
+            //     h.open('PUT', '/itens');
+            //     h.setRequestHeader('Content-type', 'multipart/form-data');
+            //     h.send(formData);    
+        
+            
+                
+    </script>
+</html>
